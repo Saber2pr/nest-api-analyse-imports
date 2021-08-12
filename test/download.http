@@ -1,10 +1,18 @@
-# vars
+### vars
 @base=http://localhost:3000
 
-# download and unzip tarball
-POST {{base}}/download/zip
+### download and unzip tarball
+POST {{base}}/download/tarball
 content-type: application/json
 
 {
   "url": "https://github.com/TuyaInc/tuya-panel-kit-example/archive/refs/tags/v0.0.1.tar.gz"
+}
+
+### delete temp
+DELETE {{base}}/download/flushTempDir
+content-type: application/json
+
+{
+  "path": "/Users/muhai/Desktop/github/nest-api-analyse-imports/dist/download/__temp__/1628736849669"
 }

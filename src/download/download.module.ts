@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { DownloadService } from './download.service';
+
 import { DownloadController } from './download.controller';
+import { DownloadService } from './download.service';
 
 @Module({
   providers: [DownloadService],

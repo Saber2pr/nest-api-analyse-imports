@@ -2,10 +2,6 @@
 
 > for repo/lib imports analyse
 
-```http
-GET /getImports
-```
-
 ## Installation
 
 ```bash

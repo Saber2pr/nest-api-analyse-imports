@@ -1,13 +1,18 @@
+import { existsSync } from 'fs';
+import { Request } from 'express';
+
 import {
   Body,
   Controller,
   Delete,
-  HttpException,
   Inject,
+  NotFoundException,
   Post,
   Req,
+  UseGuards,
 } from '@nestjs/common';
-import { Request } from 'express';
+
+import { TarballUrlGuard } from '../tarball-url.guard';
 import { DownloadService } from './download.service';
 
 @Controller('download')
@@ -16,18 +21,20 @@ export class DownloadController {
     @Inject(DownloadService) private readonly downloadService: DownloadService,
   ) {}
 
-  @Post('zip')
+  @Post('tarball')
+  @UseGuards(TarballUrlGuard)
   async downloadZip(@Req() req: Request, @Body() body: { url: string }) {
-    if (body.url) {
-      const path = await this.downloadService.downloadZip(body.url);
-      return { code: 200, data: path, message: 'download success' };
-    } else {
-      return new HttpException('need url', 400);
-    }
+    const path = await this.downloadService.downloadZip(body.url);
+    return { code: 200, data: path, message: 'download success' };
   }
 
-  @Delete()
-  async flushTempFile(path: string) {
-    this.downloadService.flushTempFile(path);
+  @Delete('flushTempDir')
+  async flushTempDir(@Req() req: Request, @Body() body: { path: string }) {
+    const path = body.path;
+    if (path && existsSync(path)) {
+      await this.downloadService.flushTempDir(path);
+    } else {
+      return new NotFoundException();
+    }
   }
 }

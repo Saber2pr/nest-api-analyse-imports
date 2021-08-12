@@ -1,6 +1,6 @@
-import { existsSync, mkdirSync, unlink } from 'graceful-fs';
+import { remove } from 'fs-extra';
+import { existsSync, mkdirSync } from 'graceful-fs';
 import { join } from 'path';
-import { promisify } from 'util';
 
 import { Injectable } from '@nestjs/common';
 import { downloadTarball } from '@tuyaworks/core';
@@ -22,9 +22,7 @@ export class DownloadService {
     await downloadTarball(url, dest);
     return dest;
   }
-  async flushTempFile(path: string) {
-    if (existsSync(path)) {
-      await promisify(unlink)(path);
-    }
+  async flushTempDir(path: string) {
+    await remove(path);
   }
 }

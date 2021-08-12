@@ -1,7 +1,7 @@
-# vars
+### vars
 @base=http://localhost:3000
 
-# download and unzip tarball
+### download and unzip tarball
 POST {{base}}/analyse/getImports
 content-type: application/json
 

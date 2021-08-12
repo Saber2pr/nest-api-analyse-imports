@@ -1,6 +1,6 @@
-# vars
+### vars
 @base=http://localhost:3000
 
-# download and unzip tarball
-GET {{base}}/compiler/imports?path=/Users/muhai/Desktop/github/nest-api-analyse-imports/dist/download/__temp__/1628735035734
+### download and unzip tarball
+GET {{base}}/compiler/imports?path=/Users/muhai/Desktop/github/nest-api-analyse-imports/dist/download/__temp__/1628737433567
 content-type: application/json

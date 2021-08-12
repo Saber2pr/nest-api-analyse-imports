@@ -1,6 +1,12 @@
 import { Request } from 'express';
 
-import { Controller, Get, HttpException, Inject, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Inject,
+  NotFoundException,
+  Req,
+} from '@nestjs/common';
 
 import { CompilerService } from './compiler.service';
 
@@ -16,7 +22,7 @@ export class CompilerController {
     if (typeof path === 'string') {
       return await this.compilerService.getImports(path);
     } else {
-      return new HttpException('need path', 400);
+      return new NotFoundException();
     }
   }
 }
