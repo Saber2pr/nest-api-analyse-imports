@@ -26,6 +26,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@saber2pr/ts-compiler": "^0.1.2",
     "@tuyaworks/core": "^1.4.1",
+    "@types/graceful-fs": "^4.1.5",
+    "graceful-fs": "^4.2.8",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

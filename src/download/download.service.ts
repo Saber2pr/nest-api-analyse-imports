@@ -1,4 +1,4 @@
-import { existsSync, mkdirSync, unlink } from 'fs';
+import { existsSync, mkdirSync, unlink } from 'graceful-fs';
 import { join } from 'path';
 import { promisify } from 'util';
 
