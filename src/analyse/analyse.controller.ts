@@ -5,6 +5,7 @@ import { Body, Controller, Inject, Post, Req, UseGuards } from '@nestjs/common';
 
 import { DownloadService } from '../download/download.service';
 import { TarballUrlGuard } from '../tarball-url.guard';
+import { GetImportsDto } from './dto';
 
 @Controller('analyse')
 export class AnalyseController {
@@ -15,7 +16,7 @@ export class AnalyseController {
 
   @Post('/getImports')
   @UseGuards(TarballUrlGuard)
-  async getImports(@Req() req: Request, @Body() body: { url: string }) {
+  async getImports(@Req() req: Request, @Body() body: GetImportsDto) {
     const url = body?.url;
     const path = await this.downloadService.downloadZip(url);
     const imports = await this.compilerService.getImports(path);
