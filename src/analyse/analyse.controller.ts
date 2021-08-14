@@ -1,15 +1,6 @@
-import { Request } from 'express';
 import { CompilerService } from 'src/compiler/compiler.service';
 
-import {
-  Body,
-  Controller,
-  Inject,
-  Req,
-  UseGuards,
-  Get,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get, Inject, Query, UseGuards } from '@nestjs/common';
 
 import { DownloadService } from '../download/download.service';
 import { TarballUrlGuard } from '../tarball-url.guard';

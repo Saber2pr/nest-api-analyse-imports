@@ -7,7 +7,7 @@ import { downloadTarball } from '@tuyaworks/core';
 
 @Injectable()
 export class DownloadService {
-  private readonly temp = join(__dirname, '__temp__');
+  private readonly temp = '/tmp';
 
   async prepareTemp() {
     if (existsSync(this.temp)) {
