@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy-Server
 on:
   workflow_dispatch:
   push:
@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       
       - name: Deploy
-      - uses: amondnet/now-deployment@v2
+        uses: amondnet/now-deployment@v2
         with:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           zeit-token: ${{ secrets.ZEIT_TOKEN }} # Required
