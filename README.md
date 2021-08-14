@@ -2,6 +2,8 @@
 
 > for repo/lib imports analyse
 
+demo: https://nest-api-analyse-imports-saber2pr.vercel.app/analyse/getImports?url=https://github.com/TuyaInc/tuya-panel-kit-example/archive/refs/tags/v0.0.1.tar.gz
+
 ## Installation
 
 ```bash
