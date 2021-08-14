@@ -9,7 +9,7 @@ export class TarballUrlGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest<Request>();
-    const url = req?.body?.url;
+    const url = req?.query?.url;
     return typeof url === 'string' && /\.tar\.gz$/.test(url);
   }
 }
