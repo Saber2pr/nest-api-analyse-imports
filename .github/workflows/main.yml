@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v2
         
       - name: Install Deps
-        run: yarn install && npm i -g now
+        run: yarn add now
       
       - name: Deploy
         run: yarn build && now
