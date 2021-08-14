@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "nestjs-now",
+  "name": "nest-api-analyse-imports",
   "builds": [
     {
       "src": "dist/main.js",
