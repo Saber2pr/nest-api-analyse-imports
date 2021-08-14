@@ -8,7 +8,10 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
       - uses: actions/checkout@v2
+      
+      - name: Deploy
       - uses: amondnet/now-deployment@v2
         with:
           zeit-token: ${{ secrets.ZEIT_TOKEN }} # Required
@@ -17,5 +20,5 @@ jobs:
           now-org-id: ${{ secrets.ORG_ID}}  #Required
           now-project-id: ${{ secrets.PROJECT_ID}} #Required 
           working-directory: ./sub-directory
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
