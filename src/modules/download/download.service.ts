@@ -3,7 +3,8 @@ import { existsSync, mkdirSync } from 'graceful-fs';
 import { join } from 'path';
 
 import { Injectable } from '@nestjs/common';
-import { downloadTarball } from '../utils';
+
+import { downloadTarball } from '../../utils';
 
 @Injectable()
 export class DownloadService {
