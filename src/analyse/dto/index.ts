@@ -1,1 +1,1 @@
-export * from './GetImportsDto';
+export * from './ParseImportsDto';

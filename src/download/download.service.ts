@@ -3,7 +3,7 @@ import { existsSync, mkdirSync } from 'graceful-fs';
 import { join } from 'path';
 
 import { Injectable } from '@nestjs/common';
-import { downloadTarball } from '@tuyaworks/core';
+import { downloadTarball } from '../utils';
 
 @Injectable()
 export class DownloadService {
