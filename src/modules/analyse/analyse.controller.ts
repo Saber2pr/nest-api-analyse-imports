@@ -1,3 +1,4 @@
+import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 import {
   Controller,
   Get,
@@ -35,20 +36,40 @@ export class AnalyseController {
   }
 
   @Get('getHttpUrls')
-  async getHttpUrls(@Query() query: ParseImportsDto) {
+  async getHttpUrls(@Query() query: GetHttpUrlsDto) {
     const url = query.url;
     if (url) {
       const path = await this.downloadService.downloadZip(query.url);
       const httpUrls = await this.compilerService.getHttpUrls(path);
       await this.downloadService.flushTempDir(path);
-      return httpUrls
+      const result = httpUrls
         .map((item) =>
           item.matchs.map((item) => {
             delete item.matches;
             return item;
           }),
         )
-        .flat();
+        .flat()
+        .filter((item) =>
+          query.filter ? item.name.includes(query.filter) : true,
+        );
+
+      if (query.render === 'html') {
+        return `<ol>
+          ${result
+            .map((item) => {
+              if (query.filter) {
+                item.name = item.name.replace(
+                  query.filter,
+                  `<span style="color:red;">${query.filter}</span>`,
+                );
+              }
+              return `<li>${item.name}</li>`;
+            })
+            .join('')}
+        </ol>`;
+      }
+      return result;
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }

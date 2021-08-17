@@ -1,10 +1,11 @@
 ### 
 @base=http://localhost:3000
+# @base=https://nest-api-analyse-imports-saber2pr.vercel.app/
 
 ### 
 GET {{base}}/v1/api/analyse/parseImports?url=https://github.com/TuyaInc/tuya-panel-kit-example/archive/refs/tags/v0.0.1.tar.gz
 content-type: application/json
 
 ### 
-GET {{base}}/v1/api/analyse/getHttpUrls?url=https://images.tuyacn.com/smart/ui/1620705711570448942-ios_5.1_1.0.11.tar.gz
+GET {{base}}/v1/api/analyse/getHttpUrls?url=https://images.tuyacn.com/smart/ui/1620705711570448942-ios_5.1_1.0.11.tar.gz&filter=tuya&render=html
 content-type: application/json
