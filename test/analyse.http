@@ -7,5 +7,5 @@ GET {{base}}/v1/api/analyse/parseImports?url=https://github.com/TuyaInc/tuya-pan
 content-type: application/json
 
 ### 
-GET {{base}}/v1/api/analyse/getHttpUrls?url=https://images.tuyacn.com/smart/ui/1620705711570448942-ios_5.1_1.0.11.tar.gz&filter=tuya&render=html
+GET {{base}}/v1/api/analyse/getHttpUrls?url=https://images.tuyacn.com/smart/ui/1629180886225681296-ios_5.28_0.0.3.tar.gz&filter=tuya&render=html
 content-type: application/json

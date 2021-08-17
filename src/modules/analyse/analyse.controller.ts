@@ -55,7 +55,8 @@ export class AnalyseController {
         );
 
       if (query.render === 'html') {
-        return `<ol>
+        if (result.length) {
+          return `<ol>
           ${result
             .map((item) => {
               if (query.filter) {
@@ -68,6 +69,9 @@ export class AnalyseController {
             })
             .join('')}
         </ol>`;
+        } else {
+          return `No HTTP link detected`;
+        }
       }
       return result;
     } else {
