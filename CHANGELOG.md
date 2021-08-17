@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.6...v0.0.7) (2021-08-17)
+
+
+### Features
+
+* null html ([3e8e9ce](https://github.com/Saber2pr/nest-api-analyse-imports/commit/3e8e9cea14adc5d9b3cc2d80d0b51b49503f30fb))
+
 ### [0.0.6](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.5...v0.0.6) (2021-08-17)
 
 
