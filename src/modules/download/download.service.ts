@@ -1,6 +1,7 @@
 import { remove } from 'fs-extra';
 import { existsSync, mkdirSync } from 'graceful-fs';
 import { join } from 'path';
+import * as md5 from 'md5';
 
 import { Injectable } from '@nestjs/common';
 
@@ -18,7 +19,7 @@ export class DownloadService {
   }
   async downloadZip(url: string) {
     await this.prepareTemp();
-    const uuid = `${Date.now()}`;
+    const uuid = md5(`${url}-${Date.now()}`);
     const dest = join(this.temp, uuid);
     await downloadTarball(url, dest);
     return dest;
