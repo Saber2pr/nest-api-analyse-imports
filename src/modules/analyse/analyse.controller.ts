@@ -1,4 +1,11 @@
-import { Controller, Get, HttpException, HttpStatus, Inject, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpException,
+  HttpStatus,
+  Inject,
+  Query,
+} from '@nestjs/common';
 
 import { CompilerService } from '../compiler/compiler.service';
 import { DownloadService } from '../download/download.service';
@@ -22,6 +29,26 @@ export class AnalyseController {
         delete item.file;
         return item;
       });
+    } else {
+      return new HttpException('need url', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @Get('getHttpUrls')
+  async getHttpUrls(@Query() query: ParseImportsDto) {
+    const url = query.url;
+    if (url) {
+      const path = await this.downloadService.downloadZip(query.url);
+      const httpUrls = await this.compilerService.getHttpUrls(path);
+      await this.downloadService.flushTempDir(path);
+      return httpUrls
+        .map((item) =>
+          item.matchs.map((item) => {
+            delete item.matches;
+            return item;
+          }),
+        )
+        .flat();
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }
