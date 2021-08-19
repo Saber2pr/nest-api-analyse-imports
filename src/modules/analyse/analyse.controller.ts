@@ -1,4 +1,3 @@
-import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 import {
   Controller,
   Get,
@@ -11,6 +10,7 @@ import {
 import { CompilerService } from '../compiler/compiler.service';
 import { DownloadService } from '../download/download.service';
 import { ParseImportsDto } from './dto';
+import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 
 @Controller('analyse')
 export class AnalyseController {

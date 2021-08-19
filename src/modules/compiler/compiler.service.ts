@@ -1,6 +1,7 @@
-import { checkPattern } from './../../utils/checkPattern';
 import { Injectable } from '@nestjs/common';
 import * as tp from '@saber2pr/ts-compiler';
+
+import { checkPattern } from '../../utils/checkPattern';
 
 @Injectable()
 export class CompilerService {

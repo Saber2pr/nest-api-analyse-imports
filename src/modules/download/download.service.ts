@@ -1,7 +1,8 @@
 import { remove } from 'fs-extra';
-import { existsSync, mkdirSync } from 'graceful-fs';
-import { join } from 'path';
+import { mkdir } from 'graceful-fs';
 import * as md5 from 'md5';
+import { join } from 'path';
+import { promisify } from 'util';
 
 import { Injectable } from '@nestjs/common';
 
@@ -9,13 +10,12 @@ import { downloadTarball } from '../../utils';
 
 @Injectable()
 export class DownloadService {
-  private readonly temp = '/tmp';
+  private readonly temp = join(process.cwd(), '/tmp');
 
   async prepareTemp() {
-    if (existsSync(this.temp)) {
-    } else {
-      mkdirSync(this.temp);
-    }
+    try {
+      await promisify(mkdir)(this.temp);
+    } catch (error) {}
   }
   async downloadZip(url: string) {
     await this.prepareTemp();
