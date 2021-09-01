@@ -23,7 +23,7 @@ export class AnalyseController {
   async getImports(@Query() query: ParseImportsDto) {
     const url = query.url;
     if (url) {
-      const path = await this.downloadService.downloadZip(query.url);
+      const path = await this.downloadService.downloadTarball(query.url);
       const imports = await this.compilerService.getImports(path);
       await this.downloadService.flushTempDir(path);
       return imports.map((item) => {
@@ -39,7 +39,7 @@ export class AnalyseController {
   async getHttpUrls(@Query() query: GetHttpUrlsDto) {
     const url = query.url;
     if (url) {
-      const path = await this.downloadService.downloadZip(query.url);
+      const path = await this.downloadService.downloadTarball(query.url);
       const httpUrls = await this.compilerService.getHttpUrls(path);
       await this.downloadService.flushTempDir(path);
       const result = httpUrls
