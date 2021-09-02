@@ -730,6 +730,15 @@
     consola "^2.15.0"
     node-fetch "^2.6.1"
 
+"@saber2pr/nest-swagger-md@^0.0.4":
+  version "0.0.4"
+  resolved "https://registry.npmjs.org/@saber2pr/nest-swagger-md/-/nest-swagger-md-0.0.4.tgz#565a0d4d845ca3806c6c8f4fd17587b0d02ade04"
+  integrity sha512-C1SEewRv82Yd7QIF7i682Wkvxed0I6K1TnyLERsYATO5tHJCwnqIO4MA74ADTkUKRMT58c15XrLZZyXiXXM0tw==
+  dependencies:
+    "@nestjs/swagger" "^5.0.9"
+    "@types/node" "^16.3.3"
+    typescript "^4.3.5"
+
 "@saber2pr/ts-compiler@^0.1.8":
   version "0.1.8"
   resolved "https://registry.npmjs.org/@saber2pr/ts-compiler/-/ts-compiler-0.1.8.tgz#4735afd6a21b522f152c1f4b1f5beaed3e6405b1"

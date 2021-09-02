@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import createApiMarkdownDocs from '@saber2pr/nest-swagger-md';
 
 import { AppModule } from './app.module';
 import { Cluster } from './cluster';
@@ -15,14 +16,17 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
+  await createApiMarkdownDocs(document);
   SwaggerModule.setup('api', app, document);
-  app.setGlobalPrefix('/v1/api');
+
+  const prefix = '/v1/api';
+  app.setGlobalPrefix(prefix);
   app.useGlobalInterceptors(new ResponseInterceptor());
 
   const PORT = 3000;
   await app.listen(3000, () =>
     console.log(
-      `server listening on port ${PORT} with the single worker ${process.pid}`,
+      `server listening on port http://localhost:${PORT}${prefix} with the single worker ${process.pid}`,
     ),
   );
 }

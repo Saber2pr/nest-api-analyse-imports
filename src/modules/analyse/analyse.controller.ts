@@ -1,79 +1,51 @@
+import { TaskQueueService } from './../task-queue/task-queue.service';
+import { GetHttpUrlFilterGuard } from 'src/guards/get-http-url-filter.guard';
+
 import {
   Controller,
   Get,
   HttpException,
   HttpStatus,
-  Inject,
   Query,
+  UseGuards,
 } from '@nestjs/common';
+import { ApiOperation } from '@nestjs/swagger';
 
-import { CompilerService } from '../compiler/compiler.service';
-import { DownloadService } from '../download/download.service';
+import { AnalyseService } from './analyse.service';
 import { ParseImportsDto } from './dto';
 import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 
 @Controller('analyse')
 export class AnalyseController {
   constructor(
-    @Inject(DownloadService) private readonly downloadService: DownloadService,
-    @Inject(CompilerService) private readonly compilerService: CompilerService,
+    private readonly analyseService: AnalyseService,
+    private readonly taskQueueService: TaskQueueService,
   ) {}
 
+  @ApiOperation({
+    description: '解析tarball代码中import语句',
+  })
   @Get('parseImports')
   async getImports(@Query() query: ParseImportsDto) {
     const url = query.url;
     if (url) {
-      const path = await this.downloadService.downloadTarball(query.url);
-      const imports = await this.compilerService.getImports(path);
-      await this.downloadService.flushTempDir(path);
-      return imports.map((item) => {
-        delete item.file;
-        return item;
-      });
+      return this.analyseService.getImports(url);
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }
   }
 
+  @ApiOperation({
+    description: '解析tarball中http链接',
+  })
   @Get('getHttpUrls')
+  @UseGuards(GetHttpUrlFilterGuard)
   async getHttpUrls(@Query() query: GetHttpUrlsDto) {
     const url = query.url;
     if (url) {
-      const path = await this.downloadService.downloadTarball(query.url);
-      const httpUrls = await this.compilerService.getHttpUrls(path);
-      await this.downloadService.flushTempDir(path);
-      const result = httpUrls
-        .map((item) =>
-          item.matchs.map((item) => {
-            delete item.matches;
-            return item;
-          }),
-        )
-        .flat()
-        .filter((item) =>
-          query.filter ? item.name.includes(query.filter) : true,
-        );
-
-      if (query.render === 'html') {
-        if (result.length) {
-          return `<ol>
-          ${result
-            .map((item) => {
-              if (query.filter) {
-                item.name = item.name.replace(
-                  query.filter,
-                  `<span style="color:red;">${query.filter}</span>`,
-                );
-              }
-              return `<li>${item.name}</li>`;
-            })
-            .join('')}
-        </ol>`;
-        } else {
-          return `No HTTP link detected`;
-        }
-      }
-      return result;
+      return await this.taskQueueService.run(url.split(','), (url) =>
+        this.analyseService.getHttpUrls(url, query.filter, query.render),
+      );
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }

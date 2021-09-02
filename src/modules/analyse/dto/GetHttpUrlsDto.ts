@@ -1,12 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 
 export class GetHttpUrlsDto {
-  @ApiProperty({ required: true, description: '源代码tarball地址' })
+  @ApiProperty({
+    required: true,
+    description: '源代码tarball地址(可逗号分隔设置多个)',
+  })
   readonly url: string;
 
-  @ApiProperty({ description: '过滤条件' })
-  readonly filter: string;
+  @ApiProperty({ description: '过滤条件', required: false })
+  readonly filter?: string;
 
-  @ApiProperty({ description: '渲染格式' })
-  readonly render: 'html' | 'json' = 'json';
+  @ApiProperty({ description: '渲染格式', required: false })
+  readonly render?: 'html' | 'json' = 'json';
 }
