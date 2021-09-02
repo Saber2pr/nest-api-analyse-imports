@@ -61,9 +61,10 @@ export class AnalyseController {
   async getHttpUrlsBatch(@Body() body: GetHttpUrlsDto) {
     const url = body.url;
     if (url) {
-      return await this.taskQueueService.run(url.split(','), (url) =>
+      const res = await this.taskQueueService.run(url.split(','), (url) =>
         this.analyseService.getHttpUrls(url, body.filter, body.render),
       );
+      return res.join('<br/>');
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }
