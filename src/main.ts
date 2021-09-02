@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app.module';
+import { Cluster } from './cluster';
 import { ResponseInterceptor } from './interceptor/response.interceptor';
 
 async function bootstrap() {
@@ -18,6 +19,16 @@ async function bootstrap() {
   app.setGlobalPrefix('/v1/api');
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  await app.listen(3000);
+  const PORT = 3000;
+  await app.listen(3000, () =>
+    console.log(
+      `server listening on port ${PORT} with the single worker ${process.pid}`,
+    ),
+  );
 }
-bootstrap();
+
+if (process.env.CLUSTER) {
+  Cluster.register(bootstrap);
+} else {
+  bootstrap();
+}
