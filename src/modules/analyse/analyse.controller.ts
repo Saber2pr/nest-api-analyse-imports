@@ -1,16 +1,18 @@
-import { TaskQueueService } from './../task-queue/task-queue.service';
 import { GetHttpUrlFilterGuard } from 'src/guards/get-http-url-filter.guard';
 
 import {
+  Body,
   Controller,
   Get,
   HttpException,
   HttpStatus,
+  Post,
   Query,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation } from '@nestjs/swagger';
 
+import { TaskQueueService } from '../task-queue/task-queue.service';
 import { AnalyseService } from './analyse.service';
 import { ParseImportsDto } from './dto';
 import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
@@ -45,6 +47,22 @@ export class AnalyseController {
     if (url) {
       return await this.taskQueueService.run(url.split(','), (url) =>
         this.analyseService.getHttpUrls(url, query.filter, query.render),
+      );
+    } else {
+      return new HttpException('need url', HttpStatus.BAD_REQUEST);
+    }
+  }
+
+  @ApiOperation({
+    description: '解析tarball中http链接',
+  })
+  @Post('getHttpUrls')
+  @UseGuards(GetHttpUrlFilterGuard)
+  async getHttpUrlsBatch(@Body() body: GetHttpUrlsDto) {
+    const url = body.url;
+    if (url) {
+      return await this.taskQueueService.run(url.split(','), (url) =>
+        this.analyseService.getHttpUrls(url, body.filter, body.render),
       );
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
