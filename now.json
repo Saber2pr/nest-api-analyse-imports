@@ -3,7 +3,7 @@
   "name": "nest-api-analyse-imports",
   "build": {
     "env": {
-      "VERCEL": true
+      "VERCEL": "true"
     }
   },
   "builds": [
