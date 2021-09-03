@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.17](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.16...v0.0.17) (2021-09-03)
+
+
+### Bug Fixes
+
+* downloadTarball ([ae3e751](https://github.com/Saber2pr/nest-api-analyse-imports/commit/ae3e75183b244d82134e0e72cd1c90a99dfba2aa))
+
 ### [0.0.16](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.15...v0.0.16) (2021-09-03)
 
 
