@@ -10,14 +10,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        
-      - name: Login
-        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_TOKEN}}
-      
+        # secrets: DOCKER_USER, DOCKER_TOKEN, REPO_NAME
       - name: Build & Publish
         run: |
           repo=${{secrets.REPO_NAME}}
           tag=${GITHUB_REF#refs/*/}
+          docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_TOKEN}}
           docker image build -t $repo:$tag .
           docker tag $repo:$tag ${{secrets.DOCKER_USER}}/$repo:$tag
           docker push ${{secrets.DOCKER_USER}}/$repo:$tag
