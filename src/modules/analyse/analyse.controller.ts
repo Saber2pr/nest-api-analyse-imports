@@ -60,10 +60,9 @@ export class AnalyseController {
   async getHttpUrlsBatch(@Body() body: GetHttpUrlsBatchDto) {
     const urls = body.urls;
     if (Array.isArray(urls)) {
-      const res = await this.taskQueueService.run(urls, (url) =>
+      return await this.taskQueueService.run(urls, (url) =>
         this.analyseService.getHttpUrls(url, body.filter, 'json'),
       );
-      return res.join('<br/>');
     } else {
       return new HttpException('urls must be array', HttpStatus.BAD_REQUEST);
     }

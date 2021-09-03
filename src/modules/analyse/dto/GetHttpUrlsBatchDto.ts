@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class GetHttpUrlsBatchDto {
   @ApiProperty({
     required: true,
-    description: '源代码tarball地址列表，逗号分隔',
+    description: '源代码tarball地址列表',
   })
   readonly urls: string[];
 
