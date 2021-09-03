@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.15](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.14...v0.0.15) (2021-09-03)
+
+
+### Features
+
+* vercel env ([874b829](https://github.com/Saber2pr/nest-api-analyse-imports/commit/874b8298a15968b2c2124ced4fc95337b5f1c7b8))
+
 ### [0.0.14](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.13...v0.0.14) (2021-09-03)
 
 
