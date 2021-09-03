@@ -4,7 +4,7 @@
 
 [Api Document](./api.md)
 
-## Use By Docker
+## From Docker
 
 ```bash
 docker pull saber2pr/nest-api-analyse-imports:v0.1.3
