@@ -2,7 +2,14 @@
 
 > for repo/lib imports analyse
 
-demo: https://nest-api-analyse-imports-saber2pr.vercel.app/v1/api/analyse/parseImports?url=https://github.com/TuyaInc/tuya-panel-kit-example/archive/refs/tags/v0.0.1.tar.gz
+[Api Document](./api.md)
+
+## Use By Docker
+
+```bash
+docker pull saber2pr/nest-api-analyse-imports:v0.1.3
+docker run -d -p 3000:3000 -it saber2pr/nest-api-analyse-imports:v0.1.3
+```
 
 ## Installation
 
