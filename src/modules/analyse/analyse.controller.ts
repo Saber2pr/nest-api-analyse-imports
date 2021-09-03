@@ -16,6 +16,7 @@ import { TaskQueueService } from '../task-queue/task-queue.service';
 import { AnalyseService } from './analyse.service';
 import { ParseImportsDto } from './dto';
 import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
+import { GetHttpUrlsBatchDto } from './dto/GetHttpUrlsBatchDto';
 
 @Controller('analyse')
 export class AnalyseController {
@@ -45,28 +46,26 @@ export class AnalyseController {
   async getHttpUrls(@Query() query: GetHttpUrlsDto) {
     const url = query.url;
     if (url) {
-      return await this.taskQueueService.run(url.split(','), (url) =>
-        this.analyseService.getHttpUrls(url, query.filter, query.render),
-      );
+      return this.analyseService.getHttpUrls(url, query.filter, query.render);
     } else {
       return new HttpException('need url', HttpStatus.BAD_REQUEST);
     }
   }
 
   @ApiOperation({
-    description: '解析tarball中http链接',
+    description: '批量解析tarball中http链接',
   })
-  @Post('getHttpUrls')
+  @Post('getHttpUrlsBatch')
   @UseGuards(GetHttpUrlFilterGuard)
-  async getHttpUrlsBatch(@Body() body: GetHttpUrlsDto) {
-    const url = body.url;
-    if (url) {
-      const res = await this.taskQueueService.run(url.split(','), (url) =>
-        this.analyseService.getHttpUrls(url, body.filter, body.render),
+  async getHttpUrlsBatch(@Body() body: GetHttpUrlsBatchDto) {
+    const urls = body.urls;
+    if (Array.isArray(urls)) {
+      const res = await this.taskQueueService.run(urls, (url) =>
+        this.analyseService.getHttpUrls(url, body.filter, 'json'),
       );
       return res.join('<br/>');
     } else {
-      return new HttpException('need url', HttpStatus.BAD_REQUEST);
+      return new HttpException('urls must be array', HttpStatus.BAD_REQUEST);
     }
   }
 }
