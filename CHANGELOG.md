@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.11](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.10...v0.0.11) (2021-09-03)
+
+
+### Features
+
+* batch ([3398aaa](https://github.com/Saber2pr/nest-api-analyse-imports/commit/3398aaa807e35e94f4cbc7cd563b17d9d90d69ab))
+* batch ([cf596c0](https://github.com/Saber2pr/nest-api-analyse-imports/commit/cf596c0b6e1a22328fc9b22d67d12858ca33057a))
+* cluster ([06167eb](https://github.com/Saber2pr/nest-api-analyse-imports/commit/06167eb7118f91ec2cac760072983bad3a3b65a6))
+* logger ([f291af0](https://github.com/Saber2pr/nest-api-analyse-imports/commit/f291af0fd53fb578868ee2d30b86bab797a09e8d))
+* start ([0c828e0](https://github.com/Saber2pr/nest-api-analyse-imports/commit/0c828e0d5b64a8dd9d0f76936f0c6f5af702ef2e))
+
+
+### Bug Fixes
+
+* batch ([7920b23](https://github.com/Saber2pr/nest-api-analyse-imports/commit/7920b23809ded0f27a039143bb0d0a7a6817180a))
+* post batch ([f20c124](https://github.com/Saber2pr/nest-api-analyse-imports/commit/f20c124f4df826abf1bbcac46972e9621cfde51b))
+* tar ([3be840f](https://github.com/Saber2pr/nest-api-analyse-imports/commit/3be840f7e6115fa0691c5d25204c75854f839bf9))
+
 ### [0.0.10](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.9...v0.0.10) (2021-08-19)
 
 
