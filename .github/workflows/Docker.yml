@@ -10,10 +10,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-        # secrets: DOCKER_USER, DOCKER_TOKEN, REPO_NAME
+        # secrets: DOCKER_USER, DOCKER_TOKEN
       - name: Build & Publish
         run: |
-          repo=${{secrets.REPO_NAME}}
+          repo=${GITHUB_REPOSITORY#*/}
           tag=${GITHUB_REF#refs/*/}
           docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_TOKEN}}
           docker image build -t $repo:$tag .
