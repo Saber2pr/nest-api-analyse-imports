@@ -1,0 +1,22 @@
+name: Docker-Pub
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  Docker-Publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: Login
+        run: docker login -u ${{secrets.DOCKER_USER}} -p ${{secrets.DOCKER_TOKEN}}
+      
+      - name: Build & Publish
+        run: |
+          repo=nest-api-analyse-imports
+          tag=${GITHUB_REF#refs/*/}
+          docker image build -t $repo:$tag .
+          docker push ${{secrets.DOCKER_USER}}/$repo:$tag
