@@ -20,4 +20,4 @@ jobs:
           tag=${GITHUB_REF#refs/*/}
           docker image build -t $repo:$tag .
           docker tag $repo:$tag ${{secrets.DOCKER_USER}}/$repo:$tag
-          docker push $repo:$tag
+          docker push ${{secrets.DOCKER_USER}}/$repo:$tag
