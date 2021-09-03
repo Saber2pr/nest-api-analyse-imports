@@ -18,6 +18,6 @@ jobs:
         run: |
           repo=${{secrets.REPO_NAME}}
           tag=${GITHUB_REF#refs/*/}
-          echo [Image] $repo:$tag
           docker image build -t $repo:$tag .
-          docker push ${{secrets.DOCKER_USER}}/$repo:$tag
+          docker tag $repo:$tag ${{secrets.DOCKER_USER}}/$repo:$tag
+          docker push $repo:$tag
