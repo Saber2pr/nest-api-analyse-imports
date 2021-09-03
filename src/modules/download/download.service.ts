@@ -17,18 +17,16 @@ export class DownloadService {
       await promisify(mkdir)(this.temp);
     } catch (error) {}
   }
-  createTarPath(dest: string) {
-    return `${dest}.tar.gz`;
-  }
   async downloadTarball(url: string) {
     await this.prepareTemp();
     const uuid = nanoid();
     const dest = join(this.temp, uuid);
-    await downloadTarball(url, dest, this.createTarPath(dest));
+    await downloadTarball(url, dest);
     return dest;
   }
   async flushTempDir(path: string) {
-    await remove(path);
-    await remove(this.createTarPath(path));
+    if (path && path.startsWith(this.temp)) {
+      await remove(path);
+    }
   }
 }
