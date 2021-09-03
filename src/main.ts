@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import createApiMarkdownDocs from '@saber2pr/nest-swagger-md';
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 import { AppModule } from './app.module';
 import { Cluster } from './cluster';
@@ -19,9 +20,13 @@ async function bootstrap() {
   await createApiMarkdownDocs(document);
   SwaggerModule.setup('api', app, document);
 
+  // log
+  const winstonLogger = app.get(WINSTON_MODULE_NEST_PROVIDER);
+  app.useLogger(winstonLogger);
+
   const prefix = '/v1/api';
   app.setGlobalPrefix(prefix);
-  app.useGlobalInterceptors(new ResponseInterceptor());
+  app.useGlobalInterceptors(new ResponseInterceptor(winstonLogger));
 
   const PORT = 3000;
   await app.listen(3000, () =>

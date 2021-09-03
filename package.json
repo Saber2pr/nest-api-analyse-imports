@@ -34,12 +34,15 @@
     "fs-extra": "^10.0.0",
     "got": "^11.8.2",
     "graceful-fs": "^4.2.8",
+    "moment": "^2.29.1",
     "nanoid": "^3.1.25",
+    "nest-winston": "^1.6.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.1.6",
-    "tar": "^6.1.11"
+    "tar": "^6.1.11",
+    "winston": "^3.3.3"
   },
   "devDependencies": {
     "@nestjs/cli": "^8.0.0",

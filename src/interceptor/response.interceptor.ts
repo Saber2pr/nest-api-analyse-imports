@@ -7,22 +7,27 @@ import {
   Injectable,
   NestInterceptor,
 } from '@nestjs/common';
+import { Logger } from '@nestjs/common';
+import { Request } from 'express';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {
+  constructor(private readonly logger: Logger) {}
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const req = context.switchToHttp().getRequest();
-    const isData = req?.query?.render === 'html';
+    const req = context.switchToHttp().getRequest<Request>();
     return next.handle().pipe(
-      map((data) =>
-        isData
-          ? data
-          : {
-              response: data,
-              status: HttpStatus.OK,
-              message: 'ok',
-            },
-      ),
+      map((data) => {
+        let response = {
+          response: data,
+          status: HttpStatus.OK,
+          message: 'ok',
+        };
+        if (req?.query?.render === 'html') {
+          response = data;
+        }
+        this.logger.log(response);
+        return response;
+      }),
     );
   }
 }
