@@ -17,7 +17,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  await createApiMarkdownDocs(document);
+  await createApiMarkdownDocs(document, '/tmp/nest-logs/api.md');
   SwaggerModule.setup('api', app, document);
 
   // log
