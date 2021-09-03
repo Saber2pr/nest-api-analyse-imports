@@ -10,8 +10,7 @@ import { downloadTarball } from '../../utils';
 
 @Injectable()
 export class DownloadService {
-  // private readonly temp = '/tmp';
-  private readonly temp = join(process.cwd(), '/tmp');
+  private readonly temp = '/tmp';
 
   async prepareTemp() {
     try {
