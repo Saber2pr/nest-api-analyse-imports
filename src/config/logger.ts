@@ -15,7 +15,7 @@ export const winstonOptions: winston.LoggerOptions = {
         winston.format.timestamp(),
         winston.format.logstash(),
       ),
-      dirname: 'logs',
+      dirname: '/tmp/nest-logs',
       filename: `nest:${moment().format('MM-DD')}.log`,
       maxsize: 50 * 1024 * 1024,
       maxFiles: 5,
