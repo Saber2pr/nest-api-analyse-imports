@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.20](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.19...v0.0.20) (2021-09-03)
+
+
+### Bug Fixes
+
+* docker ([4c5679b](https://github.com/Saber2pr/nest-api-analyse-imports/commit/4c5679b27d100a600c2a51f15536be7b57fd3245))
+
 ### [0.0.19](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.0.18...v0.0.19) (2021-09-03)
 
 
