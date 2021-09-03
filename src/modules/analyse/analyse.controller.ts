@@ -15,8 +15,8 @@ import { ApiOperation } from '@nestjs/swagger';
 import { TaskQueueService } from '../task-queue/task-queue.service';
 import { AnalyseService } from './analyse.service';
 import { ParseImportsDto } from './dto';
-import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 import { GetHttpUrlsBatchDto } from './dto/GetHttpUrlsBatchDto';
+import { GetHttpUrlsDto } from './dto/GetHttpUrlsDto';
 
 @Controller('analyse')
 export class AnalyseController {

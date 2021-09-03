@@ -1,6 +1,8 @@
-import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import moment from 'moment';
+import { utilities as nestWinstonModuleUtilities } from 'nest-winston';
 import winston from 'winston';
+
+import { createOutputPath } from '../utils/env';
 
 export const winstonOptions: winston.LoggerOptions = {
   transports: [
@@ -15,7 +17,7 @@ export const winstonOptions: winston.LoggerOptions = {
         winston.format.timestamp(),
         winston.format.logstash(),
       ),
-      dirname: '/tmp/nest-logs',
+      dirname: createOutputPath('logs'),
       filename: `nest:${moment().format('MM-DD')}.log`,
       maxsize: 50 * 1024 * 1024,
       maxFiles: 5,

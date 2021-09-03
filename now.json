@@ -1,6 +1,11 @@
 {
   "version": 2,
   "name": "nest-api-analyse-imports",
+  "build": {
+    "env": {
+      "VERCEL": true
+    }
+  },
   "builds": [
     {
       "src": "dist/main.js",

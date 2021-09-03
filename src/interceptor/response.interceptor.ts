@@ -1,3 +1,4 @@
+import { Request } from 'express';
 import { map, Observable } from 'rxjs';
 
 import {
@@ -5,10 +6,9 @@ import {
   ExecutionContext,
   HttpStatus,
   Injectable,
+  Logger,
   NestInterceptor,
 } from '@nestjs/common';
-import { Logger } from '@nestjs/common';
-import { Request } from 'express';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {

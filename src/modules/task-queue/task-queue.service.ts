@@ -1,5 +1,6 @@
-import { splitArray } from './../../utils/array';
 import { Injectable } from '@nestjs/common';
+
+import { splitArray } from '../../utils/array';
 
 @Injectable()
 export class TaskQueueService {

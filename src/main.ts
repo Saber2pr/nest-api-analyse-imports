@@ -1,11 +1,13 @@
+import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
+
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import createApiMarkdownDocs from '@saber2pr/nest-swagger-md';
-import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 import { AppModule } from './app.module';
 import { Cluster } from './cluster';
 import { ResponseInterceptor } from './interceptor/response.interceptor';
+import { createOutputPath } from './utils/env';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -17,7 +19,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  await createApiMarkdownDocs(document, '/tmp/nest-logs/api.md');
+  await createApiMarkdownDocs(document, createOutputPath('./api.md'));
   SwaggerModule.setup('api', app, document);
 
   // log

@@ -1,8 +1,8 @@
 import { remove } from 'fs-extra';
 import { mkdir } from 'graceful-fs';
+import { nanoid } from 'nanoid';
 import { join } from 'path';
 import { promisify } from 'util';
-import { nanoid } from 'nanoid';
 
 import { Injectable } from '@nestjs/common';
 
