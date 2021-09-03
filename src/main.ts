@@ -31,7 +31,7 @@ async function bootstrap() {
   app.useGlobalInterceptors(new ResponseInterceptor(winstonLogger));
 
   const PORT = 3000;
-  await app.listen(3000, () =>
+  await app.listen(PORT, () =>
     console.log(
       `server listening on port http://localhost:${PORT}${prefix} with the single worker ${process.pid}`,
     ),

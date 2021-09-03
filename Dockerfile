@@ -18,5 +18,7 @@ RUN yarn config set registry 'https://registry.npm.taobao.org' -g
 RUN yarn install --network-timeout 600000
 RUN yarn build
 
+EXPOSE 3000
+
 # script
 CMD [ "yarn", "start" ]

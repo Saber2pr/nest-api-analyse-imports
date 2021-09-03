@@ -16,7 +16,7 @@ jobs:
       
       - name: Build & Publish
         run: |
-          repo=nest-api-analyse-imports
+          repo=${{secrets.REPO_NAME}}
           tag=${GITHUB_REF#refs/*/}
           docker image build -t $repo:$tag .
           docker push ${{secrets.DOCKER_USER}}/$repo:$tag
