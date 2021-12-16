@@ -19,7 +19,7 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  await createApiDocs(document, createOutputPath('./api.md'), {
+  await createApiDocs(document, createOutputPath('./api'), {
     prefix: '/v1/api',
   });
   SwaggerModule.setup('api', app, document);
