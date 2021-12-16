@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.4](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.1.3...v0.1.4) (2021-12-16)
+
+
+### Features
+
+* json schema ([7293242](https://github.com/Saber2pr/nest-api-analyse-imports/commit/7293242c1dcbed42eeede4a922ae8f9b446f1bd9))
+* pr tpl ([e01c25d](https://github.com/Saber2pr/nest-api-analyse-imports/commit/e01c25d287b5b632c136c82579e85344fad68359))
+
 ### [0.1.3](https://github.com/Saber2pr/nest-api-analyse-imports/compare/v0.1.2...v0.1.3) (2021-09-03)
 
 
