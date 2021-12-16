@@ -32,6 +32,10 @@ async function bootstrap() {
   app.setGlobalPrefix(prefix);
   app.useGlobalInterceptors(new ResponseInterceptor(winstonLogger));
 
+  app.enableCors({
+    origin: '*',
+  });
+
   const PORT = 3000;
   await app.listen(PORT, () =>
     console.log(
