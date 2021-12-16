@@ -2,7 +2,7 @@ import { WINSTON_MODULE_NEST_PROVIDER } from 'nest-winston';
 
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import createApiMarkdownDocs from '@saber2pr/nest-swagger-md';
+import { createApiDocs } from '@saber2pr/nest-swagger-md';
 
 import { AppModule } from './app.module';
 import { Cluster } from './cluster';
@@ -19,7 +19,9 @@ async function bootstrap() {
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
-  await createApiMarkdownDocs(document, createOutputPath('./api.md'));
+  await createApiDocs(document, createOutputPath('./api.md'), {
+    prefix: '/v1/api',
+  });
   SwaggerModule.setup('api', app, document);
 
   // log

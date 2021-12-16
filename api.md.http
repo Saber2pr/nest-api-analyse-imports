@@ -1,0 +1,34 @@
+## 1. nest-api-analyse-imports
+分析服务
+
+## 2. 变量定义
+
+@base=http://localhost:3000/v1/api
+
+## 3. 接口列表
+
+### 2.1 待补充
+GET {{base}}/
+
+### 2.2 解析tarball代码中import语句
+GET {{base}}/analyse/parseImports?url=url
+
+### 2.3 解析tarball中http链接
+GET {{base}}/analyse/getHttpUrls?url=url&filter=filter&render=render
+
+### 2.4 批量解析tarball中http链接
+POST {{base}}/analyse/getHttpUrlsBatch
+Content-Type: application/json
+
+{
+  "urls": "array, 必选, 源代码tarball地址列表",
+  "filter": "string, 过滤条件"
+}
+
+### 2.5 待补充
+POST {{base}}/analyse/json/schema/tstype
+Content-Type: application/json
+
+{
+  "json": "{\"type\":\"object\",\"properties\":{\"msg\":{\"type\":\"string\"},\"result\":{\"type\":\"object\",\"properties\":{\"size\":{\"type\":\"string\"},\"totalPage\":{\"type\":\"integer\"},\"dataList\":{\"type\":\"array\",\"items\":{\"type\":\"object\",\"properties\":{\"teamName\":{\"type\":\"string\"},\"note\":{\"type\":\"string\"},\"gmtModified\":{\"type\":\"integer\"},\"teamCode\":{\"type\":\"string\"},\"logo\":{\"type\":\"integer\"},\"teamOwn\":{\"type\":\"string\"},\"gmtCreate\":{\"type\":\"integer\"}}}},\"totalCount\":{\"type\":\"integer\"}}},\"code\":{\"type\":\"string\"},\"flag\":{\"type\":\"boolean\"},\"throwable\":{\"type\":\"string\"},\"backendUrl\":{\"type\":\"string\"},\"rows\":{\"type\":\"integer\"}}}"
+}

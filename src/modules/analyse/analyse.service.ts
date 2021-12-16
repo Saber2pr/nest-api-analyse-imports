@@ -1,7 +1,8 @@
 import { Inject, Injectable } from '@nestjs/common';
-
+import { compile, compileFromFile } from 'json-schema-to-typescript';
 import { CompilerService } from '../compiler/compiler.service';
 import { DownloadService } from '../download/download.service';
+import { GetJsonSchemaTypeDto } from './dto/GetJsonSchemaTypeDto';
 
 @Injectable()
 export class AnalyseService {
@@ -54,5 +55,9 @@ export class AnalyseService {
       }
     }
     return result;
+  }
+
+  async getJsonSchemaType(body: GetJsonSchemaTypeDto) {
+    return compile(JSON.parse(body.json), 'test');
   }
 }

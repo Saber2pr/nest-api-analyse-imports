@@ -1,3 +1,4 @@
+import { GetJsonSchemaTypeDto } from './dto/GetJsonSchemaTypeDto';
 import { GetHttpUrlFilterGuard } from 'src/guards/get-http-url-filter.guard';
 
 import {
@@ -66,5 +67,10 @@ export class AnalyseController {
     } else {
       return new HttpException('urls must be array', HttpStatus.BAD_REQUEST);
     }
+  }
+
+  @Post('json/schema/tstype')
+  async getJsonSchemaType(@Body() body: GetJsonSchemaTypeDto) {
+    return this.analyseService.getJsonSchemaType(body);
   }
 }
