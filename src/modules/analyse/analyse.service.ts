@@ -58,6 +58,6 @@ export class AnalyseService {
   }
 
   async getJsonSchemaType(body: GetJsonSchemaTypeDto) {
-    return compile(JSON.parse(body.json), 'test');
+    return compile(JSON.parse(body.json), body.name);
   }
 }
